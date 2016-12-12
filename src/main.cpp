@@ -2308,6 +2308,11 @@ int GetAuxPowStartBlock()
 
 int GetOurChainID()
 {
+    return 0x5588;
+}
+
+int GetOldChainID()
+{
     return 0x0011;
 }
 
@@ -2320,7 +2325,7 @@ bool CBlockHeader::CheckProofOfWork(int nHeight) const
         // - parent block must not have the same chain ID (see CAuxPow::Check)
         // - index of this chain in chain merkle tree must be pre-determined (see CAuxPow::Check)
 
-        if (!fTestNet && nHeight != INT_MAX && GetChainID() != GetOurChainID())
+        if (!fTestNet && nHeight != INT_MAX && !(GetChainID() != GetOldChainID() || GetChainID() != GetOurChainID()))
             return error("CheckProofOfWork() : block does not have our chain ID");
 		
         if (auxpow.get() != NULL)
