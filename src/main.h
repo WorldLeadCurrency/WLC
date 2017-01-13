@@ -57,7 +57,7 @@ static const mpq MPQ_MAX_MONEY = mpq("1999999999999999/1");
 inline bool MoneyRange(int64 nValue) { return (nValue >= 0 && nValue <= I64_MAX_MONEY); }
 inline bool MoneyRange(mpz zValue) { return (zValue >= 0 && zValue <= MPZ_MAX_MONEY); }
 inline bool MoneyRange(mpq qValue) { return (qValue >= 0 && qValue <= MPQ_MAX_MONEY); }
-/** Subsidy, demurrage, and budgetary requirements for Worldleadcurrency host currency */
+/** Subsidy, demurrage, and budgetary requirements for Solidar host currency */
 static const mpq TITHE_RATIO = mpq("99/100");
 static const int EQ_HEIGHT = 25000;
 static const int DEMURRAGE_RATE = 262144;
@@ -656,7 +656,7 @@ public:
         @param[in] mapInputs	Map of previous transactions that have outputs we're spending
         @return	Sum of value of all inputs (scriptSigs)
      */
-    mpq GetValueIn(CCoinsViewCache& mapInputs) const;
+    mpq GetValueIn(CCoinsViewCache& mapInputs, bool fTruncateInputs) const;
 
     static bool AllowFree(double dPriority)
     {
@@ -712,6 +712,7 @@ public:
     // This does not modify the UTXO set. If pvChecks is not NULL, script checks are pushed onto it
     // instead of being performed inline.
     bool CheckInputs(CValidationState &state, CCoinsViewCache &view, bool fScriptChecks = true,
+                     bool fScriptChecks = true,
                      unsigned int flags = SCRIPT_VERIFY_P2SH | SCRIPT_VERIFY_STRICTENC,
                      std::vector<CScriptCheck> *pvChecks = NULL) const;
 

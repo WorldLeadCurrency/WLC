@@ -65,7 +65,7 @@ map<uint256, set<uint256> > mapOrphanTransactionsByPrev;
 // Constant stuff for coinbase transactions we create:
 CScript COINBASE_FLAGS;
 
-const string strMessageMagic = "Worldleadcurrency Signed Message:\n";
+const string strMessageMagic = "Solidar Signed Message:\n";
 
 double dHashesPerSec = 0.0;
 int64 nHPSTimerStart = 0;
@@ -760,12 +760,16 @@ bool CTxMemPool::accept(CValidationState &state, CTransaction &tx, bool fCheckIn
         // Check for non-standard pay-to-script-hash in inputs
         if (!tx.AreInputsStandard(view) && !fTestNet)
             return error("CTxMemPool::accept() : nonstandard transaction input");
+	    
+        // Input truncation is a scheduled soft-fork change, but it is enabled
+        // right away as policy.
+        const bool fTruncateInputs = true;
 
         // Note: if you modify this code to accept non-standard transactions, then
         // you should add code here to check that the transaction does a
         // reasonable number of ECDSA signature verifications.
 
-        mpq nFees = tx.GetValueIn(view)-tx.GetValueOut();
+        mpq nFees = tx.GetValueIn(view, fTruncateInputs)-tx.GetValueOut();
         unsigned int nSize = ::GetSerializeSize(tx, SER_NETWORK, PROTOCOL_VERSION);
 
         // Don't accept it if it can't get into a block
@@ -1092,7 +1096,7 @@ uint256 static GetOrphanRoot(const CBlockHeader* pblock)
 }
 
 
-// WLC reward / tax-system
+// solidar reward / tax-system
 mpq static GetInitialDistributionAmount(int nHeight)
 {
     mpq nSubsidy = 0;
@@ -1684,7 +1688,7 @@ bool VerifySignature(const CCoins& txFrom, const CTransaction& txTo, unsigned in
     return CScriptCheck(txFrom, txTo, nIn, flags, nHashType)();
 }
 
-bool CTransaction::CheckInputs(CValidationState &state, CCoinsViewCache &inputs, bool fScriptChecks, unsigned int flags, std::vector<CScriptCheck> *pvChecks) const
+bool CTransaction::CheckInputs(CValidationState &state, CCoinsViewCache &inputs, bool fTruncateInputs, bool fScriptChecks, unsigned int flags, std::vector<CScriptCheck> *pvChecks) const
 {
     if (!IsCoinBase())
     {
@@ -1718,7 +1722,7 @@ bool CTransaction::CheckInputs(CValidationState &state, CCoinsViewCache &inputs,
         // Check for negative or overflow input values
         mpq nValueIn;
         try {
-            nValueIn = GetValueIn(inputs);
+            nValueIn = GetValueIn(inputs, fTruncateInputs);
         } catch (std::runtime_error &e) {
             return state.DoS(100, error("CheckInputs() : %s %s", GetHash().ToString().c_str(), e.what()));
         }
@@ -1932,6 +1936,10 @@ bool CBlock::ConnectBlock(CValidationState &state, CBlockIndex* pindex, CCoinsVi
     // BIP16 didn't become active until Apr 1 2012
     int64 nBIP16SwitchTime = 1333238400;
     bool fStrictPayToScriptHash = (pindex->nTime >= nBIP16SwitchTime);
+	
+    // Whether fractional inputs should be summed or ignored. Bundled as part of the
+    // BIP66 soft-fork in Freicoin.
+    bool fTruncateInputs = false;
 
     unsigned int flags = SCRIPT_VERIFY_NOCACHE |
                          (fStrictPayToScriptHash ? SCRIPT_VERIFY_P2SH : SCRIPT_VERIFY_NONE);
@@ -1974,11 +1982,11 @@ bool CBlock::ConnectBlock(CValidationState &state, CBlockIndex* pindex, CCoinsVi
             if (pindex->nHeight < tx.nRefHeight)
                 return state.DoS(100, error("ConnectBlock() : block.nHeight < tx.nRefHeight"));
 
-            mpq qNet = tx.GetValueIn(view) - tx.GetValueOut();
+            mpq qNet = tx.GetValueIn(view, fTruncateInputs) - tx.GetValueOut();
             nFees += GetTimeAdjustedValue(qNet, pindex->nHeight - tx.nRefHeight);
 
             std::vector<CScriptCheck> vChecks;
-            if (!tx.CheckInputs(state, view, fScriptChecks, flags, nScriptCheckThreads ? &vChecks : NULL))
+            if (!tx.CheckInputs(state, view, fTruncateInputs, fScriptChecks, flags, nScriptCheckThreads ? &vChecks : NULL))
                 return false;
             control.Add(vChecks);
         }
@@ -1995,7 +2003,7 @@ bool CBlock::ConnectBlock(CValidationState &state, CBlockIndex* pindex, CCoinsVi
     if (fBenchmark)
         printf("- Connect %u transactions: %.2fms (%.3fms/tx, %.3fms/txin)\n", (unsigned)vtx.size(), 0.001 * nTime, 0.001 * nTime / vtx.size(), nInputs <= 1 ? 0 : 0.001 * nTime / (nInputs-1));
 
-    // Errorcodes for no WLC tax payed: Wrong amount or wrong address.
+    // Errorcodes for no solidar tax payed: Wrong amount or wrong address.
     mpq qCheckTaxPayment  = ((GetInitialDistributionAmount(pindex->nHeight) + GetPerpetualSubsidyAmount(pindex->nHeight)) * TITHE_RATIO);
     const mpq qTaxValue = RoundAbsolute(qCheckTaxPayment, ROUND_AWAY_FROM_ZERO);
     const mpz zTaxValue = qTaxValue.get_num() / qTaxValue.get_den();
@@ -2568,7 +2576,7 @@ bool CBlock::AcceptBlock(CValidationState &state, CDiskBlockPos *dbp)
             return state.DoS(100, error("AcceptBlock() : rejected by checkpoint lock-in at %d", nHeight));
 
         //Memi from DVC
-        // WLC currently doesn't enforce 2 blocks, since merged mining
+        // solidar currently doesn't enforce 2 blocks, since merged mining
         // produces v1 blocks and normal mining should produce v2 blocks.
 #if 0
         // Reject block.nVersion=1 blocks when 95% (75% on testnet) of the network has upgraded:
@@ -4718,7 +4726,10 @@ CBlockTemplate* CreateNewBlock(CReserveKey& reservekey)
         return NULL;
     CBlock *pblock = &pblocktemplate->block; // pointer for convenience
 
-    // Largest block you're willing to create:
+    // If set, fractional fees are not aggregated into the coinbase.
+    const bool fTruncateInputs = true;
+
+   // Largest block you're willing to create:
     unsigned int nBlockMaxSize = GetArg("-blockmaxsize", DEFAULT_BLOCK_MAX_SIZE);
     // Limit to betweeen 1K and MAX_BLOCK_SIZE-1K for sanity:
     nBlockMaxSize = std::max((unsigned int)1000, std::min((unsigned int)(MAX_BLOCK_SIZE-1000), nBlockMaxSize));
@@ -4757,7 +4768,7 @@ CBlockTemplate* CreateNewBlock(CReserveKey& reservekey)
         txNew.vout[0].scriptPubKey << pubkey << OP_CHECKSIG;
         txNew.nRefHeight = nHeight;
 		
-        // Create WLC tax tx
+        // Create solidar tax tx
         mpq nBlockTax = ((GetInitialDistributionAmount(nHeight) + GetPerpetualSubsidyAmount(nHeight)) * TITHE_RATIO);
         txNew.vout[1].scriptPubKey = CScript() << OP_DUP << OP_HASH160 << ParseHex(GetBlockTaxAddress(nHeight)) << OP_EQUALVERIFY << OP_CHECKSIG;
         txNew.vout[1].SetInitialValue(RoundAbsolute(nBlockTax, ROUND_AWAY_FROM_ZERO));
@@ -4813,8 +4824,11 @@ CBlockTemplate* CreateNewBlock(CReserveKey& reservekey)
                     }
                     mapDependers[txin.prevout.hash].push_back(porphan);
                     porphan->setDependsOn.insert(txin.prevout.hash);
-                    const CTransaction &txPrevIn = mempool.mapTx[txin.prevout.hash];
-                    nTotalIn += GetPresentValue(txPrevIn, txPrevIn.vout[txin.prevout.n], tx.nRefHeight);
+                    const CTransaction &txPrevIn = mempool.mapTx[txin.prevout.hash];+                    
+	            mpq nValueIn = GetPresentValue(txPrevIn, txPrevIn.vout[txin.prevout.n], tx.nRefHeight);
+                    if (fTruncateInputs)
+                         nValueIn = RoundAbsolute(nValueIn, ROUND_TOWARD_NEGATIVE);
+                    nTotalIn += nValueIn;
                     continue;
                 }
                 const CCoins &coins = view.GetCoins(txin.prevout.hash);
@@ -4822,7 +4836,9 @@ CBlockTemplate* CreateNewBlock(CReserveKey& reservekey)
                 int nConf = nHeight - coins.nHeight;
 
                 mpq nValueIn = GetPresentValue(coins, coins.vout[txin.prevout.n], tx.nRefHeight);
-                nTotalIn += nValueIn;
+                if (fTruncateInputs)
+	            nValueIn = RoundAbsolute(nValueIn, ROUND_TOWARD_NEGATIVE);
+		nTotalIn += nValueIn;
 
                 dPriority += nValueIn.get_d() * nConf;
             }
@@ -4897,7 +4913,7 @@ CBlockTemplate* CreateNewBlock(CReserveKey& reservekey)
             if (!tx.HaveInputs(view))
                 continue;
 
-            mpq nNet = tx.GetValueIn(view)-tx.GetValueOut();
+            mpq nNet = tx.GetValueIn(view, fTruncateInputs)-tx.GetValueOut();
             mpq nTxFees = GetTimeAdjustedValue(nNet, nHeight-tx.nRefHeight);
 
             nTxSigOps += tx.GetP2SHSigOpCount(view);
@@ -4949,8 +4965,8 @@ CBlockTemplate* CreateNewBlock(CReserveKey& reservekey)
         nLastBlockSize = nBlockSize;
         printf("CreateNewBlock(): total size %"PRI64u"\n", nBlockSize);
 
-        // WLC - mining reward
-        mpq nBlockReward = (GetInitialDistributionAmount(nHeight) + GetPerpetualSubsidyAmount(nHeight)) * (1 - TITHE_RATIO) + nFees;
+        // solidar - mining reward
+        mpq nBlockReward = (GetInitialDistributionAmount(nHeight) + GetPerpetualSubsidyAmount(nHeight)) * (1 - TITHE_RATIO) + nFees -1;
         pblock->vtx[0].vout[0].SetInitialValue(RoundAbsolute(nBlockReward, ROUND_TOWARDS_ZERO));
         pblocktemplate->vTxFees[0] = -nFees;
 
@@ -5056,7 +5072,7 @@ bool CheckWork(CBlock* pblock, CWallet& wallet, CReserveKey& reservekey)
             return error("AUX POW parent hash %s is not under target %s", auxpow->GetParentBlockHash().GetHex().c_str(), hashTarget.GetHex().c_str());
 
         //// debug print
-        printf("WLCMiner:\n");
+        printf("SolidarMiner:\n");
         printf("AUX proof-of-work found \n our hash: %s \n parent hash: %s \n target: %s\n",
                hash.GetHex().c_str(),
                auxpow->GetParentBlockHash().GetHex().c_str(),
@@ -5069,7 +5085,7 @@ bool CheckWork(CBlock* pblock, CWallet& wallet, CReserveKey& reservekey)
             return false;
 
         //// debug print
-        printf("WLCMiner:\n");
+        printf("SolidarMiner:\n");
         printf("proof-of-work found \n hash: %s \ntarget: %s\n", hash.GetHex().c_str(), hashTarget.GetHex().c_str());
      }
 
