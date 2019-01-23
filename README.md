@@ -1,7 +1,7 @@
 Solidar integration/staging tree
 =================================
 
-https://www.solidar.it/
+https://www.winc-ev.org/
 
 Copyright (c) 2009-2013 Bitcoin Developers
 
@@ -15,7 +15,7 @@ out collectively by the network. Solidar is also the name of the open source
 software which enables the use of this currency.
 
 For more information, as well as an immediately useable, binary version of
-the Solidar client software, see https://www.solidar.it.
+the Solidar client software, see https://www.winc-ev.org.
 
 License
 -------
@@ -64,7 +64,7 @@ Unit tests for the core code are in `src/test/`. To compile and run them:
 
 Unit tests for the GUI code are in `src/qt/test/`. To compile and run them:
 
-    qmake WORLDLEADCURRENCY_QT_TEST=1 -o Makefile.test solidar-qt.pro
+    qmake SOLIDAR_QT_TEST=1 -o Makefile.test solidar-qt.pro
     make -f Makefile.test
     ./solidar-qt_test
 
