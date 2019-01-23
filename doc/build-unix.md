@@ -61,6 +61,10 @@ Build requirements:
 
 	sudo apt-get install build-essential
 	sudo apt-get install libssl-dev
+	
+If there is an error that Bignum can't be converted in CBignum please use:
+	
+	sudo apt-get install libssl1.0-dev
 
 for Ubuntu 12.04:
 
