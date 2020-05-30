@@ -68,12 +68,15 @@ Value getinfo(const Array& params, bool fHelp)
 
     proxyType proxy;
     GetProxy(NET_IPV4, proxy);
+    string strBalance = FormatMoney(pwalletMain->GetBalance(nBestHeight));
+    int dot = strBalance.find(".");
+    string strCutBal = strBalance.substr(0, dot) + strBalance.substr(dot,9);
 
     Object obj;
     obj.push_back(Pair("version",       (int)CLIENT_VERSION));
     obj.push_back(Pair("protocolversion",(int)PROTOCOL_VERSION));
     obj.push_back(Pair("walletversion", pwalletMain->GetVersion()));
-    obj.push_back(Pair("balance",       ValueFromAmount(pwalletMain->GetBalance(nBestHeight))));
+    obj.push_back(Pair("balance",       strCutBal));
     obj.push_back(Pair("blocks",        (int)nBestHeight));
     obj.push_back(Pair("timeoffset",    (boost::int64_t)GetTimeOffset()));
     obj.push_back(Pair("connections",   (int)vNodes.size()));
@@ -1132,7 +1135,7 @@ Value listaccounts(const Array& params, bool fHelp)
     list<CAccountingEntry> acentries;
     CWalletDB(pwalletMain->strWalletFile).ListAccountCreditDebit("*", acentries);
     BOOST_FOREACH(const CAccountingEntry& entry, acentries)
-        mapAccountBalances[entry.strAccount] += GetTimeAdjustedValue(entry.nCreditDebit, nHeight - entry.nRefHeight);
+        mapAccountBalances[entry.strAccount] += GetTimeAdjustedValueNew(entry.nCreditDebit, nHeight - entry.nRefHeight);
 
     Object ret;
     BOOST_FOREACH(const PAIRTYPE(string, mpq)& accountBalance, mapAccountBalances) {

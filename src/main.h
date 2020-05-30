@@ -62,13 +62,11 @@ static const mpq TITHE_RATIO_NEW = mpq("999/1000");
 static const mpq TITHE_RATIO = mpq("99/100");
 static const int EQ_HEIGHT = 25000;
 static const int DEMURRAGE_RATE = 262144;
+static const int RESTED_BLOCK_HEIGHT = 111075;
 /** Coinbase transaction outputs can only be spent after this number of new blocks (network rule) */
 static const int COINBASE_MATURITY = 100;
 /** Threshold for nLockTime: below this value it is interpreted as block number, otherwise as UNIX timestamp. */
 static const unsigned int LOCKTIME_THRESHOLD = 500000000; // Tue Nov  5 00:53:20 1985 UTC
-/** FIR difficulty filter parameters */
-static const int DIFF_FILTER_THRESHOLD_TESTNET =  INT_MAX;
-static const int DIFF_FILTER_THRESHOLD         = INT_MAX; //FRC filter for future purpose if needed..
 /** Maximum number of script-checking threads allowed */
 static const int MAX_SCRIPTCHECK_THREADS = 16;
 #ifdef USE_UPNP
@@ -181,8 +179,6 @@ void FormatHashBuffers(CBlock* pblock, char* pmidstate, char* pdata, char* phash
 bool CheckWork(CBlock* pblock, CWallet& wallet, CReserveKey& reservekey);
 /** Check whether a block hash satisfies the proof-of-work requirement specified by nBits */
 bool CheckProofOfWork(uint256 hash, unsigned int nBits);
-/** Calculate the minimum amount of work a received block needs, without knowing its direct parent */
-unsigned int ComputeMinWork(unsigned int nBase, int64 nTime);
 /** Get the number of active peers */
 int GetNumBlocksOfPeers();
 /** Check whether we are doing an initial block download (synchronizing from disk or network) */
@@ -197,6 +193,9 @@ int GetOurChainID(); // Memi from DVC
 mpq GetTimeAdjustedValue(int64 nInitialValue, int nRelativeDepth);
 mpq GetTimeAdjustedValue(const mpz &zInitialValue, int nRelativeDepth);
 mpq GetTimeAdjustedValue(const mpq &qInitialValue, int nRelativeDepth);
+mpq GetTimeAdjustedValueNew(int64 nInitialValue, int nRelativeDepth);
+mpq GetTimeAdjustedValueNew(const mpz &zInitialValue, int nRelativeDepth);
+mpq GetTimeAdjustedValueNew(const mpq &qInitialValue, int nRelativeDepth);
 /** Calculate value of an output at the specified block height */
 mpq GetPresentValue(const CCoins& coins, const CTxOut& output, int nBlockHeight);
 mpq GetPresentValue(const CTransaction& tx, const CTxOut& output, int nBlockHeight);

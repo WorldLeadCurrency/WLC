@@ -57,6 +57,18 @@ Licenses of statically linked libraries:
 
 Dependency Build Instructions: Ubuntu & Debian
 ----------------------------------------------
+Suitable terminal command for most newer unix version:
+
+	sudo apt-get install libssl-dev build-essential libdb-dev libdb++-dev libboost-dev libboost-system-dev 
+	libboost-filesystem-dev libboost-program-options-dev libboost-thread-dev libgmp-dev libmpfr-dev
+
+IMPORTANT NOTE: for compiling solidard on raspberry it's recommended to try an older Boost (e.g. V1.58) and libssl1.0 first:
+
+	sudo apt-get install libssl1.0-dev build-essential libdb-dev libdb++-dev libboost1.58-dev libboost-system1.58-dev 
+	libboost-filesystem1.58-dev libboost-program-options1.58-dev libboost-thread1.58-dev libgmp-dev libmpfr-dev
+
+In detail:
+
 Build requirements:
 
 	sudo apt-get install build-essential

@@ -1,9 +1,9 @@
 Solidar integration/staging tree
 =================================
 
-https://www.winc-ev.org/
+https://www.winc-ev.com/
 
-Copyright (c) 2009-2013 Bitcoin Developers
+Copyright (c) 2009-2020 Solidar Developers
 
 What is Solidar?
 -----------------
@@ -15,7 +15,7 @@ out collectively by the network. Solidar is also the name of the open source
 software which enables the use of this currency.
 
 For more information, as well as an immediately useable, binary version of
-the Solidar client software, see https://www.winc-ev.org.
+the Solidar client software, see https://www.winc-ev.com.
 
 License
 -------

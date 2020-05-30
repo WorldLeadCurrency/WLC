@@ -66,6 +66,7 @@ Value gethashespersec(const Array& params, bool fHelp)
 
 Value getmininginfo(const Array& params, bool fHelp)
 {
+    printf("Getwork called");
     if (fHelp || params.size() != 0)
         throw runtime_error(
             "getmininginfo\n"
@@ -116,7 +117,7 @@ Value getwork(const Array& params, bool fHelp)
         static int64 nStart;
         static CBlockTemplate* pblocktemplate;
         if (pindexPrev != pindexBest ||
-            (nTransactionsUpdated != nTransactionsUpdatedLast && GetTime() - nStart > 60))
+            (nTransactionsUpdated != nTransactionsUpdatedLast && GetTime() - nStart > 60) || (pindexBest->nTime < GetTime() - 7200))
         {
             if (pindexPrev != pindexBest)
             {
@@ -210,7 +211,7 @@ Value getblocktemplate(const Array& params, bool fHelp)
             "  \"transactions\" : contents of non-coinbase transactions that should be included in the next block\n"
             "  \"coinbaseaux\" : data that should be included in coinbase\n"
             "  \"coinbasevalue\" : maximum allowable input to coinbase transaction, including the generation award and transaction fees\n"
-            "  \"budget\" : required outputs of the coinbase transaction"
+            //"  \"budget\" : required outputs of the coinbase transaction"
             "  \"target\" : hash target\n"
             "  \"mintime\" : minimum timestamp appropriate for next block\n"
             "  \"curtime\" : current timestamp\n"
@@ -288,9 +289,9 @@ Value getblocktemplate(const Array& params, bool fHelp)
     {
         uint256 txHash = tx.GetHash();
         setTxIndex[txHash] = i++;
-
-        if (tx.IsCoinBase())
-            continue;
+        
+        //if (tx.IsCoinBase() && tx.vout[1].nValue != pblock->vtx[0].vout[1].nValue)
+        //    continue;
 
         Object entry;
 
@@ -300,18 +301,20 @@ Value getblocktemplate(const Array& params, bool fHelp)
 
         entry.push_back(Pair("hash", txHash.GetHex()));
 
-        Array deps;
-        BOOST_FOREACH (const CTxIn &in, tx.vin)
+        if (!tx.IsCoinBase())
         {
-            if (setTxIndex.count(in.prevout.hash))
-                deps.push_back(setTxIndex[in.prevout.hash]);
+			Array deps;
+			BOOST_FOREACH (const CTxIn &in, tx.vin)
+			{
+				if (setTxIndex.count(in.prevout.hash))
+					deps.push_back(setTxIndex[in.prevout.hash]);
+			}
+			entry.push_back(Pair("depends", deps));
+
+			int index_in_template = i - 1;
+			entry.push_back(Pair("fee", FormatMoney(pblocktemplate->vTxFees[index_in_template])));
+			entry.push_back(Pair("sigops", pblocktemplate->vTxSigOps[index_in_template]));
         }
-        entry.push_back(Pair("depends", deps));
-
-        int index_in_template = i - 1;
-        entry.push_back(Pair("fee", FormatMoney(pblocktemplate->vTxFees[index_in_template])));
-        entry.push_back(Pair("sigops", pblocktemplate->vTxSigOps[index_in_template]));
-
         transactions.push_back(entry);
     }
 
@@ -334,23 +337,6 @@ Value getblocktemplate(const Array& params, bool fHelp)
     result.push_back(Pair("transactions", transactions));
     result.push_back(Pair("coinbaseaux", aux));
     result.push_back(Pair("coinbasevalue", (int64_t)pblock->vtx[0].vout[0].nValue));
-
-// Budget from FRC could be removed in future version.
-
-    Array aBudget;
-    BOOST_FOREACH(const CTxOut& txout, pblock->vtx[0].vout) {
-        if ( txout != pblock->vtx[0].vout[0] ) {
-            Object entry, script;
-            ScriptPubKeyToJSON(txout.scriptPubKey, script);
-            entry.push_back(Pair("scriptPubKey", script));
-            entry.push_back(Pair("value", (int64_t)txout.nValue));
-            aBudget.push_back(entry);
-        }
-    }
-    result.push_back(Pair("budget", aBudget));
-
-// Budget end
-
     result.push_back(Pair("target", hashTarget.GetHex()));
     result.push_back(Pair("mintime", (int64_t)pindexPrev->GetMedianTimePast()+1));
     result.push_back(Pair("mutable", aMutable));
@@ -418,10 +404,10 @@ Value getworkaux(const Array& params, bool fHelp)
             "  \"auxpow\" : aux proof of work to submit to aux chain\n"
             );
     if (vNodes.empty())
-        throw JSONRPCError(-9, "Devcoin is not connected!");
+        throw JSONRPCError(-9, "Solidar is not connected!");
 
     if (IsInitialBlockDownload())
-        throw JSONRPCError(-10, "Devcoin is downloading blocks...");
+        throw JSONRPCError(-10, "Solidar is downloading blocks...");
     static map<uint256, pair<CBlock*, unsigned int> > mapNewBlock;
     static vector<CBlockTemplate*> vNewBlockTemplate;
     static CReserveKey reservekey(pwalletMain);

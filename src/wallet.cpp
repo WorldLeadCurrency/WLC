@@ -644,7 +644,7 @@ void CWalletTx::GetAmounts(list<pair<CTxDestination, mpq> >& listReceived,
     mpq nDebit = GetDebit(nBlockHeight);
     if (nDebit > 0) // debit>0 means we signed/sent this transaction
     {
-        mpq nValueOut = GetTimeAdjustedValue(GetValueOut(), nBlockHeight-nRefHeight);
+        mpq nValueOut = GetTimeAdjustedValueNew(GetValueOut(), nBlockHeight-nRefHeight);
         nFee = nDebit - nValueOut;
     }
 

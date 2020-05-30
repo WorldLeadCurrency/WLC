@@ -25,7 +25,7 @@ int64_t CCoins::GetPresentValueOfOutput(int n, int height) const
 {
     if (height < refheight)
         throw std::runtime_error("CCoins::GetPresentValueOfOutput() : destination height less than origin");
-    return GetTimeAdjustedValue(vout[n].nValue, height-refheight);
+    return GetTimeAdjustedValueNew(vout[n].nValue, height-refheight);
 }
 
 // calculate number of bytes for the bitmask, and its number of non-zero bytes

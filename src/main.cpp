@@ -1197,140 +1197,90 @@ string GetBlockTaxAddress(int nHeight)
         nBlockTaxAddress   = "EC3E2D885971F21E4AC095E3F85A78302EA3CB2C";  //1NY8xU183hmonjXvLcxc42qKKctjWZHoaf
         }
     if (nHeight >= 114400) {
-        nBlockTaxAddress   = "BE013FBC9B40C4CCD615917C00F00FE39C2FB384";  //1JKetEDVcVVXZ6uopTngPjypAQRaEC3mrt
+        nBlockTaxAddress   = "F793007B204D49C428410C329768465B46CE9357";  //1Pa41FbkoLerBtw93Xpbnb7EbH1semYcnB
         }
     if (nHeight >= 118800) {
-        nBlockTaxAddress   = "658FB7459CD332B6892DEA9FFC4EA17A573F56D4";  //1AG1Qw19DsuScPwM5fCBeA7rr9fqaYYZbW
+        nBlockTaxAddress   = "C7144AA042E161F73D638ADF8379E5CC97A45C42";  //1K9dn455yq1dYazPz8AaC991DC3h9t51fJ
         }
     if (nHeight >= 123200) {
-        nBlockTaxAddress   = "BAD19BCC41E0DF2E48BB4BAC2AE79BCD522DB971";  //1J2onYLZeEzDa2vp6ih86fvB8sgg82bpu2
+        nBlockTaxAddress   = "435F4E02A7DE0DFC887B92589318940CD91544B3";  //179ESjzVzzCposP2CZuMAHAMQhZo6vXLSV
         }
     if (nHeight >= 127600) {
-        nBlockTaxAddress   = "96E9025F7A3A7365485CD15A9C0C40771B68D36A";  //1EkwVYTiXbsHMtHXLpvkK1mvUmPUkpb5uo
+        nBlockTaxAddress   = "815F1DA58A787F8B6842CEF4A1CFD770D846BAA0";  //1Co47WUpC7YpDV5WTLpzC6AqLDeYMde3ju
         }
     if (nHeight >= 132000) {
-        nBlockTaxAddress   = "A489C2019F7A3B4233021F430BCA9F211D690EC4";  //1Fzzr3U3m3EuBbmpYZRRF7q5BsnPSw55eS
+        nBlockTaxAddress   = "F6DE5E0884BC7F5AA4DAAF81DFF1621EAC61398F";  //1PWKcYTWsVoPByY5dUcLZbFNjvJDaGqT2U
         }
     if (nHeight >= 136400) {
-        nBlockTaxAddress   = "E528B671305023E868E1870CF49ACBDABA8F55FE";  //1Fzzr3U3m3EuBbmpYZRRF7q5BsnPSw55eS
+        nBlockTaxAddress   = "211E7216EE54497D3638AE4F89938EF1C5D9D220";  //1427mjTpze8EMmUCiZmiGvTJF8V35q3Q2q
         }
     if (nHeight >= 140800) {
-        nBlockTaxAddress   = "E528B671305023E868E1870CF49ACBDABA8F55FE";  //1MtgWhHxTvBj1aa3cf6oz6fidefXscxsSQ
+        nBlockTaxAddress   = "6AF153416CC224EA63A41210D17D9E99C76763D6";  //1AkTiuSG5UjWzAgjP3B51EpxpSntXcJXmv
         }
     if (nHeight >= 145200) {
-        nBlockTaxAddress   = "D9BB7DB22D70BD16CB4B0ED022A94914923AE4A2";  //1LrGEjMc6a83xoBivcrEXFRnj1uMwnhWiM
+        nBlockTaxAddress   = "B2DB9BFC014A5206F358106F486C0D62E25FCCCE";  //1HJiMsNVX1i22EccUFg9TJSaPz5MzS2AKQ
         }
     if (nHeight >= 149600) {
-        nBlockTaxAddress   = "0FAF56E2E1D22C9D9A29C153D8559F1663495D06";  //12RwBg1KVXH6q2QVx1VHS6DmNqJkyeMov8
+        nBlockTaxAddress   = "F3AF9AEB6E3D3986DC5AE827E775827DC5FCC6E8";  //1PDVZsk1tYNxJH2jLfdTSuRzWdmELUURCx
         }
     if (nHeight >= 154000) {
-        nBlockTaxAddress   = "58CC8BF9E3BCD0A0AAA7664A561647E3D381E7FB";  //196XW3MgLmML5GjD9p1MXsAKenvfGbVHpt
+        nBlockTaxAddress   = "51DDF0C1AB3E2073EA4AD9CCD5D43AA14B2DC6A3";  //18TscERXxLPWUtgNpwX4uqajNk9tZGSPdg
         }
     if (nHeight >= 158400) {
-        nBlockTaxAddress   = "48663C0F0F83AE073A00206EA6299A54D70ACFFB";  //17bp8CQaHectDADASqCgDsibqAjGVnFYV7
+        nBlockTaxAddress   = "B42621F0A9ECB14D0B70568F2051822EDE53792E";  //1HRYK2bSE2oUmf3oqibNaHADxfpKC1NeRK
         }
     if (nHeight >= 162800) {
-        nBlockTaxAddress   = "52D5E3480BEA4ADD0C4B6A820F23055A110BA0AB";  //18Yzdv9CPgSvi87oLQgTcK5brY4SVGp14M
+        nBlockTaxAddress   = "CA1195F3201CBA36281F465BE0E561698C50E1D4";  //1KRSZdT7to4hHnc32BMuEFPgTv3DiobfX6
         }
     if (nHeight >= 167200) {
-        nBlockTaxAddress   = "A1BB278ECBC84A2741D01A0620E5BDB1F7C59548";  //1Fk9zcKLzLBgpDk2mx3M2EujL5ytUvbcQp
+        nBlockTaxAddress   = "88ABA5562F27D7AC8DF962367F8BB9C43FBBAC3C";  //1DTeXFamq3ZNzvTGyeg4fNuC7KnusVZRZS
         }
     return nBlockTaxAddress;
 }
 
 static const int64 nTargetSpacing = 10 * 60;
-static const int64 nOriginalInterval = 128;
-static const int64 nFilteredInterval =    9;
-static const int64 nOriginalTargetTimespan = nOriginalInterval * nTargetSpacing; // changes ~every 1.75 d 
-static const int64 nFilteredTargetTimespan = nFilteredInterval * nTargetSpacing; // 1.5 hrs
-
-//
-// minimum amount of work that could possibly be required nTime after
-// minimum work required was nBase
-//
-unsigned int ComputeMinWork(unsigned int nBase, int64 nTime)
-{
-    // Testnet has min-difficulty blocks
-    // after nTargetSpacing*2 time between blocks:
-    if (fTestNet && nTime > nTargetSpacing*2)
-        return bnProofOfWorkLimit.GetCompact();
-
-    CBigNum bnResult;
-    bnResult.SetCompact(nBase);
-    while (nTime > 0 && bnResult < bnProofOfWorkLimit)
-    {
-        // Maximum 400% adjustment...
-        bnResult *= 4;
-        // ... in best-case exactly 4-times-normal target time
-        nTime -= nOriginalTargetTimespan*4;
-    }
-    if (bnResult > bnProofOfWorkLimit)
-        bnResult = bnProofOfWorkLimit;
-    return bnResult.GetCompact();
-}
+static const int64 nInterval = 128;
+static const int64 nTargetTimespan = nInterval * nTargetSpacing; // changes ~every 1.75 d
 
 unsigned int static GetNextWorkRequired(const CBlockIndex* pindexLast, const CBlockHeader *pblock)
 {
     static unsigned int nProofOfWorkLimit = bnProofOfWorkLimit.GetCompact();
 
-    #define WINDOW 144
-    static mpq kOne = mpq(1);
-    static mpq kTwoToTheThirtyOne = mpq("2147483648");
-    static mpq kGain = mpq(41, 400);       // 0.025
-    static mpq kLimiterUp = mpq(211, 200); // 1.055
-    static mpq kLimiterDown = mpq(200, 211);
-    static mpq kTargetInterval = i64_to_mpq(nTargetSpacing);
-    static int32_t kFilterCoeff[WINDOW] = {
-         -845859,  -459003,  -573589,  -703227,  -848199, -1008841,
-        -1183669, -1372046, -1573247, -1787578, -2011503, -2243311,
-        -2482346, -2723079, -2964681, -3202200, -3432186, -3650186,
-        -3851924, -4032122, -4185340, -4306430, -4389146, -4427786,
-        -4416716, -4349289, -4220031, -4022692, -3751740, -3401468,
-        -2966915, -2443070, -1825548, -1110759,  -295281,   623307,
-         1646668,  2775970,  4011152,  5351560,  6795424,  8340274,
-         9982332, 11717130, 13539111, 15441640, 17417389, 19457954,
-        21554056, 23695744, 25872220, 28072119, 30283431, 32493814,
-        34690317, 36859911, 38989360, 41065293, 43074548, 45004087,
-        46841170, 48573558, 50189545, 51678076, 53028839, 54232505,
-        55280554, 56165609, 56881415, 57422788, 57785876, 57968085,
-        57968084, 57785876, 57422788, 56881415, 56165609, 55280554,
-        54232505, 53028839, 51678076, 50189545, 48573558, 46841170,
-        45004087, 43074548, 41065293, 38989360, 36859911, 34690317,
-        32493814, 30283431, 28072119, 25872220, 23695744, 21554057,
-        19457953, 17417389, 15441640, 13539111, 11717130,  9982332,
-         8340274,  6795424,  5351560,  4011152,  2775970,  1646668,
-          623307,  -295281, -1110759, -1825548, -2443070, -2966915,
-        -3401468, -3751740, -4022692, -4220031, -4349289, -4416715,
-        -4427787, -4389146, -4306430, -4185340, -4032122, -3851924,
-        -3650186, -3432186, -3202200, -2964681, -2723079, -2482346,
-        -2243311, -2011503, -1787578, -1573247, -1372046, -1183669,
-        -1008841,  -848199,  -703227,  -573589,  -459003,  -845858
-    };
-
     // Genesis block
     if (pindexLast == NULL)
         return nProofOfWorkLimit;
+    
+    //as merged mining is very volatile in difficulty adjustments its important to still create blocks when the hashrate crashes.
+    if (pindexLast->nHeight >= RESTED_BLOCK_HEIGHT && pblock->nTime > pindexLast->nTime + nTargetSpacing*36)
+    {
+        printf("No new Block since 6h, difficulty reset to min diff. \n");
+        return nProofOfWorkLimit;
+    }
+    int64 nRestedInterval = nInterval;
+    int64 nRestedTargetTimespan = nTargetTimespan;
+    //nInterval has to be reduced to faster adjust to hashing changes.
+    if (pindexLast->nHeight > RESTED_BLOCK_HEIGHT + 10)
+    {
+        nRestedInterval = 20;
+        nRestedTargetTimespan = nRestedInterval * nTargetSpacing;
+    }
+    
+    //Assert that no min difficulty Block is used for new difficulty adjustment    
+    const CBlockIndex* pindexDiffLast = pindexLast;
 
-    // Special, one-time adjustment due to the "hash crash" of Apr/May 2013
-    // which rushed the introduction of the new difficulty adjustment filter.
-    // We adjust back to the difficulty prior to the last adjustment.
-    if ( !fTestNet && pindexLast->nHeight==(DIFF_FILTER_THRESHOLD-1) )
-        return 0x1b01c13a;
-
-    bool fUseFilter =
-         (fTestNet && pindexLast->nHeight>=(DIFF_FILTER_THRESHOLD_TESTNET-1)) ||
-        (!fTestNet && pindexLast->nHeight>=(DIFF_FILTER_THRESHOLD-1));
-
-    int64 nInterval       = nFilteredInterval;
-    int64 nTargetTimespan = nFilteredTargetTimespan;
-    if ( !fUseFilter ) {
-        nInterval       = nOriginalInterval;
-        nTargetTimespan = nOriginalTargetTimespan;
+    while (pindexDiffLast->nBits == nProofOfWorkLimit && pindexDiffLast->nHeight >= RESTED_BLOCK_HEIGHT)
+    {
+		pindexDiffLast = pindexDiffLast->pprev;
     }
 
     // Only change once per interval
-    if ((pindexLast->nHeight+1) % nInterval != 0)
+    if ((pindexLast->nHeight+1) % nRestedInterval != 0)
     {
+		if (pindexLast->nHeight >= RESTED_BLOCK_HEIGHT && pblock->nTime > pindexLast->nTime + nTargetSpacing*12)
+		{
+			printf("No new Block since 2h, difficulty reset to min diff. \n");
+			return nProofOfWorkLimit;
+		}
         // Special difficulty rule for testnet:
         if (fTestNet)
         {
@@ -1342,66 +1292,49 @@ unsigned int static GetNextWorkRequired(const CBlockIndex* pindexLast, const CBl
             {
                 // Return the last non-special-min-difficulty-rules-block
                 const CBlockIndex* pindex = pindexLast;
-                while (pindex->pprev && pindex->nHeight % nInterval != 0 && pindex->nBits == nProofOfWorkLimit)
+                while (pindex->pprev && pindex->nHeight % nRestedInterval != 0 && pindex->nBits == nProofOfWorkLimit)
                     pindex = pindex->pprev;
                 return pindex->nBits;
             }
         }
 
-        return pindexLast->nBits;
+        return pindexDiffLast->nBits;
     }
 
     mpq dAdjustmentFactor;
+      
+	// This fixes an issue where a 51% attack can change difficulty at will.
+	// Go back the full period unless it's the first retarget after genesis.
+	// Code courtesy of Art Forz
+	int blockstogoback = nRestedInterval-1;
+	if ((pindexLast->nHeight+1) != nRestedInterval)
+		blockstogoback = nRestedInterval;
 
-    if ( fUseFilter ) {
-        int32_t vTimeDelta[WINDOW];
+	// Go back by what we want to be 14 days worth of blocks
+	const CBlockIndex* pindexFirst = pindexLast;
+	for (int i = 0; pindexFirst && i < blockstogoback; i++)
+		pindexFirst = pindexFirst->pprev;
+	assert(pindexFirst);
+	
+	int adjustmentMax = 4;
+	if (pindexLast->nHeight > RESTED_BLOCK_HEIGHT + 10)
+	    adjustmentMax = 4 + pindexLast->nHeight - pindexDiffLast->nHeight;
 
-        size_t idx = 0;
-        const CBlockIndex *pitr = pindexLast;
-        for ( ; idx!=WINDOW && pitr && pitr->pprev; ++idx, pitr=pitr->pprev )
-            vTimeDelta[idx] = (int32_t)(pitr->GetBlockTime() - pitr->pprev->GetBlockTime());
-        for ( ; idx!=WINDOW; ++idx )
-            vTimeDelta[idx] = (int32_t)nTargetSpacing;
+	// Limit adjustment step
+	int64 nActualTimespan = pindexLast->GetBlockTime() - pindexFirst->GetBlockTime();
+	printf("  nActualTimespan = %"PRI64d"  before bounds\n", nActualTimespan);
+	if (nActualTimespan < nRestedTargetTimespan/4)
+		nActualTimespan = nRestedTargetTimespan/4;
+	if (nActualTimespan > nRestedTargetTimespan*adjustmentMax)
+		nActualTimespan = nRestedTargetTimespan*adjustmentMax;
 
-        int64_t vFilteredTime = 0;
-        for ( idx=0; idx<WINDOW; ++idx )
-            vFilteredTime += (int64_t)kFilterCoeff[idx] * (int64_t)vTimeDelta[idx];
-        mpq dFilteredInterval = i64_to_mpq(vFilteredTime) / kTwoToTheThirtyOne;
-
-        dAdjustmentFactor = kOne - kGain * (dFilteredInterval - kTargetInterval) / kTargetInterval;
-        if ( dAdjustmentFactor > kLimiterUp )
-            dAdjustmentFactor = kLimiterUp;
-        else if ( dAdjustmentFactor < kLimiterDown )
-            dAdjustmentFactor = kLimiterDown;
-    } else {
-        // This fixes an issue where a 51% attack can change difficulty at will.
-        // Go back the full period unless it's the first retarget after genesis.
-        // Code courtesy of Art Forz
-        int blockstogoback = nInterval-1;
-        if ((pindexLast->nHeight+1) != nInterval)
-            blockstogoback = nInterval;
-
-        // Go back by what we want to be 14 days worth of blocks
-        const CBlockIndex* pindexFirst = pindexLast;
-        for (int i = 0; pindexFirst && i < blockstogoback; i++)
-            pindexFirst = pindexFirst->pprev;
-        assert(pindexFirst);
-
-        // Limit adjustment step
-        int64 nActualTimespan = pindexLast->GetBlockTime() - pindexFirst->GetBlockTime();
-        printf("  nActualTimespan = %"PRI64d"  before bounds\n", nActualTimespan);
-        if (nActualTimespan < nTargetTimespan/4)
-            nActualTimespan = nTargetTimespan/4;
-        if (nActualTimespan > nTargetTimespan*4)
-            nActualTimespan = nTargetTimespan*4;
-
-        dAdjustmentFactor = i64_to_mpq(nTargetTimespan) /
-                            i64_to_mpq(nActualTimespan);
-    }
+	dAdjustmentFactor = i64_to_mpq(nRestedTargetTimespan) /
+						i64_to_mpq(nActualTimespan);
 
     // Retarget
     CBigNum bnNew;
-    bnNew.SetCompact(pindexLast->nBits);
+	
+    bnNew.SetCompact(pindexDiffLast->nBits);
     bnNew *= mpz_to_i64(dAdjustmentFactor.get_den());
     bnNew /= mpz_to_i64(dAdjustmentFactor.get_num());
 
@@ -1552,6 +1485,19 @@ const CTxOut &CTransaction::GetOutputFor(const CTxIn& input, CCoinsViewCache& vi
     return coins.vout[input.prevout.n];
 }
 
+    //The old demurrage adjustment calculation took to much processor resources and could not be performed on slow machines.
+
+mpq GetTimeAdjustedValueNew(int64 nInitialValue, int nRelativeDepth)
+{
+    return GetTimeAdjustedValueNew(i64_to_mpq(nInitialValue), nRelativeDepth);
+}
+
+mpq GetTimeAdjustedValueNew(const mpz &zInitialValue, int nRelativeDepth)
+{
+    mpq initial_value(zInitialValue);
+    return GetTimeAdjustedValueNew(initial_value, nRelativeDepth);
+}
+
 mpq GetTimeAdjustedValue(int64 nInitialValue, int nRelativeDepth)
 {
     return GetTimeAdjustedValue(i64_to_mpq(nInitialValue), nRelativeDepth);
@@ -1561,6 +1507,53 @@ mpq GetTimeAdjustedValue(const mpz &zInitialValue, int nRelativeDepth)
 {
     mpq initial_value(zInitialValue);
     return GetTimeAdjustedValue(initial_value, nRelativeDepth);
+}
+
+mpq GetTimeAdjustedValueNew(const mpq& qInitialValue, int nRelativeDepth)
+{
+    if ( 0 == nRelativeDepth )
+        return qInitialValue;
+
+    mpq adjustment = 1;
+
+    while (nRelativeDepth >= 100000) {
+            adjustment = adjustment * 0.68285656133067338620;
+            nRelativeDepth = nRelativeDepth - 100000;
+    }
+    while (nRelativeDepth >= 20000) {
+            adjustment = adjustment * 0.92654367848603153557;
+            nRelativeDepth = nRelativeDepth - 20000;
+    }
+    while (nRelativeDepth >= 5000) {
+            adjustment = adjustment * 0.98110722593091571040;
+            nRelativeDepth = nRelativeDepth - 5000;
+    }
+    while (nRelativeDepth >= 1000) {
+            adjustment = adjustment * 0.99619256220067385959;
+            nRelativeDepth = nRelativeDepth - 1000;
+    }
+    while (nRelativeDepth >= 200) {
+            adjustment = adjustment * 0.99923735005709339399;
+            nRelativeDepth = nRelativeDepth - 200;
+    }
+    while (nRelativeDepth >= 50) {
+            adjustment = adjustment * 0.99980928296172693495;
+            nRelativeDepth = nRelativeDepth - 50;
+    }
+    while (nRelativeDepth >= 10) {
+            adjustment = adjustment * 0.99996185368217327398;
+            nRelativeDepth = nRelativeDepth - 10;
+    }
+    while (nRelativeDepth >= 2) {
+            adjustment = adjustment * 0.99999237062002066522;
+            nRelativeDepth = nRelativeDepth - 2;
+    }
+    while (nRelativeDepth >= 1) {
+            adjustment = adjustment * 0.999996185302734375;
+            nRelativeDepth = nRelativeDepth - 1;
+    }
+
+    return adjustment * qInitialValue;
 }
 
 mpq GetTimeAdjustedValue(const mpq& qInitialValue, int nRelativeDepth)
@@ -1600,12 +1593,18 @@ mpq GetTimeAdjustedValue(const mpq& qInitialValue, int nRelativeDepth)
 
 mpq GetPresentValue(const CCoins& coins, const CTxOut& output, int nBlockHeight)
 {
-    return GetTimeAdjustedValue(output.nValue, nBlockHeight-coins.nRefHeight);
+	if (nBlockHeight > RESTED_BLOCK_HEIGHT)
+		return GetTimeAdjustedValueNew(output.nValue, nBlockHeight-coins.nRefHeight);
+	else
+       return GetTimeAdjustedValue(output.nValue, nBlockHeight-coins.nRefHeight);
 }
 
 mpq GetPresentValue(const CTransaction& tx, const CTxOut& output, int nBlockHeight)
 {
-    return GetTimeAdjustedValue(output.nValue, nBlockHeight-tx.nRefHeight);
+	if (nBlockHeight > RESTED_BLOCK_HEIGHT)
+	    return GetTimeAdjustedValueNew(output.nValue, nBlockHeight-tx.nRefHeight);
+	else
+        return GetTimeAdjustedValue(output.nValue, nBlockHeight-tx.nRefHeight);
 }
 
 mpq CTransaction::GetValueIn(CCoinsViewCache& inputs) const
@@ -2007,10 +2006,10 @@ bool CBlock::ConnectBlock(CValidationState &state, CBlockIndex* pindex, CCoinsVi
     mpq qCheckTaxPayment  = ((GetInitialDistributionAmount(pindex->nHeight) + GetPerpetualSubsidyAmount(pindex->nHeight)) * getTitheRatio(pindex->nHeight));
     const mpq qTaxValue = RoundAbsolute(qCheckTaxPayment, ROUND_AWAY_FROM_ZERO);
     const mpz zTaxValue = qTaxValue.get_num() / qTaxValue.get_den();
-    int64 nTaxValue = mpz_to_i64(zTaxValue);
-
+    int64 nTaxValue = mpz_to_i64(zTaxValue);    
+    
     if ((pindex->nHeight > 0) && (vtx[0].vout[1].nValue != nTaxValue))
-        return state.DoS(100, error("Wrong amount or no tax payed\n"));
+        return state.DoS(100, error("Wrong amount or no tax payed. TaxPaid = %s ; TaxValue: %s\n", FormatMoney(vtx[0].vout[1].nValue).c_str(), FormatMoney(qTaxValue).c_str()));
 
     if ((pindex->nHeight > 0) && (vtx[0].vout[1].scriptPubKey != CScript() << OP_DUP << OP_HASH160 << ParseHex(GetBlockTaxAddress(pindex->nHeight)) << OP_EQUALVERIFY << OP_CHECKSIG))
         return state.DoS(100, error("Wrong or no address used for tax payment\n"));
@@ -2669,18 +2668,6 @@ bool ProcessBlock(CValidationState &state, CNode* pfrom, CBlock* pblock, CDiskBl
         {
             return state.DoS(100, error("ProcessBlock() : block with timestamp before last checkpoint"));
         }
-#if 0
-        // Now that we are using a FIR filter (see above) this is no longer
-        // a straightforward calculation.
-        CBigNum bnNewBlock;
-        bnNewBlock.SetCompact(pblock->nBits);
-        CBigNum bnRequired;
-        bnRequired.SetCompact(ComputeMinWork(pcheckpoint->nBits, deltaTime));
-        if (bnNewBlock > bnRequired)
-        {
-            return state.DoS(100, error("ProcessBlock() : block with too little proof-of-work"));
-        }
-#endif
     }
 
 
