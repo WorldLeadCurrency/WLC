@@ -1268,6 +1268,7 @@ unsigned int static GetNextWorkRequired(const CBlockIndex* pindexLast, const CBl
     //Assert that no min difficulty Block is used for new difficulty adjustment    
     const CBlockIndex* pindexDiffLast = pindexLast;
 
+	//pindexDiffLast = the newest block with a difficulty larger than min difficulty
     while (pindexDiffLast->nBits == nProofOfWorkLimit && pindexDiffLast->nHeight >= RESTED_BLOCK_HEIGHT)
     {
 		pindexDiffLast = pindexDiffLast->pprev;
@@ -1310,7 +1311,7 @@ unsigned int static GetNextWorkRequired(const CBlockIndex* pindexLast, const CBl
 	if ((pindexLast->nHeight+1) != nRestedInterval)
 		blockstogoback = nRestedInterval;
 
-	// Go back by what we want to be 14 days worth of blocks
+	// Go back by what we want to be 20 blocks
 	const CBlockIndex* pindexFirst = pindexLast;
 	for (int i = 0; pindexFirst && i < blockstogoback; i++)
 		pindexFirst = pindexFirst->pprev;
@@ -1321,7 +1322,14 @@ unsigned int static GetNextWorkRequired(const CBlockIndex* pindexLast, const CBl
 	    adjustmentMax = 4 + pindexLast->nHeight - pindexDiffLast->nHeight;
 
 	// Limit adjustment step
-	int64 nActualTimespan = pindexLast->GetBlockTime() - pindexFirst->GetBlockTime();
+	
+	// Increase the Timespan to calculate the difficulty on difficulty adjustment blocks
+	int64 nActualTimespan;
+	if (pindexLast->nHeight - pindexDiffLast->nHeight > nRestedInterval && pindexLast->nHeight > RESTED_BLOCK_HEIGHT)
+		nActualTimespan = pindexLast->GetBlockTime() - pindexDiffLast->GetBlockTime();
+	else
+		nActualTimespan = pindexLast->GetBlockTime() - pindexFirst->GetBlockTime();
+	
 	printf("  nActualTimespan = %"PRI64d"  before bounds\n", nActualTimespan);
 	if (nActualTimespan < nRestedTargetTimespan/4)
 		nActualTimespan = nRestedTargetTimespan/4;
